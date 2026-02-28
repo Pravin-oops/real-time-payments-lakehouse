@@ -18,3 +18,6 @@ __pycache__/
 # 5. OS Generated Files (Good practice)
 .DS_Store
 Thumbs.db
+
+# 6. markdown images
+*.png
