@@ -1,4 +1,4 @@
-# 🛠️ INITIAL CLOUD ACCOUNT SETUP
+# 🛠️ INITIAL CLOUD AND LOCAL SETUP
 
 The pipeline is going to run mostly on cloud infrastructure, with some data generation occurring on a local machine. I have selected cloud vendors that offer free trial periods to facilitate practice and learning.
 
@@ -96,3 +96,32 @@ Databricks provides **free trial access** with their free edition with a variety
     dbutils.secrets.get(scope="lakehouse_secrets", key="aws_access_key")
     dbutils.secrets.get(scope="lakehouse_secrets", key="aws_secret_key")
     ```
+## 4. Local Environment Setup
+### i. Python Environment
+* Docker devcontainer setup with Python 3.10 and necessary libraries.
+* Create a `requirements.txt` file with the following content:
+```
+boto3==1.34.51
+python-dotenv==1.0.1
+pyspark==3.5.0
+jupyter==1.0.0
+```
+* Install the dependencies using dockerfile setup
+### ii. Environment Variables
+* Create a `.env` file in the root of your project directory with the following content:
+```
+# AWS Credentials
+AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+S3_BUCKET_NAME=YOUR_S3_BUCKET_NAME
+
+# Confluent Kafka Credentials
+KAFKA_BOOTSTRAP_SERVER=YOUR_KAFKA_BOOTSTRAP_SERVER
+KAFKA_API_KEY=YOUR_KAFKA_API_KEY
+KAFKA_API_SECRET=YOUR_KAFKA_API_SECRET
+
+# databricks_access_token
+DATABRICKS_ACCESS_TOKEN=YOUR_DATABRICKS_ACCESS_TOKEN
+DATABRICKS_HOST=YOUR_DATABRICKS_HOST_URL
+```
+* Replace the placeholder values with your actual credentials and host URL.
