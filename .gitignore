@@ -21,3 +21,4 @@ Thumbs.db
 
 # 6. markdown images
 *.png
+.databricks

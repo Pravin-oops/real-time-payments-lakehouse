@@ -125,3 +125,7 @@ DATABRICKS_ACCESS_TOKEN=YOUR_DATABRICKS_ACCESS_TOKEN
 DATABRICKS_HOST=YOUR_DATABRICKS_HOST_URL
 ```
 * Replace the placeholder values with your actual credentials and host URL.
+* to check if credentials are saved properly check in terminal
+```
+databricks secrets list --scope lakehouse_secrets
+```
