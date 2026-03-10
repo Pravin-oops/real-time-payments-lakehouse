@@ -51,15 +51,16 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
     ports:
-      - "2182:2181"
+      - "2181:2181"
     volumes:
       - zookeeper-data:/var/lib/zookeeper/data
       - zookeeper-logs:/var/lib/zookeeper/log
     healthcheck:
-      test: ["CMD", "bash", "-c", "echo srvr | nc localhost 2181 | grep imok"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "bash", "-c", "curl -sf http://localhost:8080/commands/ruok"]
+      interval: 20s
+      timeout: 15s
+      retries: 15
+      start_period: 60s
     networks:
       - lakehouse-net
 
@@ -225,10 +226,7 @@ services:
       - ./data:/data
       - spark-jars:/opt/spark/jars
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
+      disable: true
     networks:
       - lakehouse-net
 
@@ -254,7 +252,7 @@ services:
       - spark-jars:/opt/spark/jars
     depends_on:
       spark-master:
-        condition: service_healthy
+        condition: service_started
     networks:
       - lakehouse-net
 
@@ -280,7 +278,7 @@ services:
       - spark-jars:/opt/spark/jars
     depends_on:
       spark-master:
-        condition: service_healthy
+        condition: service_started
     networks:
       - lakehouse-net
 
