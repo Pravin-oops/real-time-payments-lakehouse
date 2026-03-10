@@ -293,8 +293,7 @@ services:
     command:
       - -c
       - |
-        pip install apache-airflow-providers-apache-spark apache-airflow-providers-postgres --quiet
-        airflow db upgrade
+        airflow db migrate
         airflow users create \
           --username ${AIRFLOW_ADMIN_USER} \
           --password ${AIRFLOW_ADMIN_PASSWORD} \
