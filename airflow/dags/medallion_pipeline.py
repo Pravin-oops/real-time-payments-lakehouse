@@ -105,5 +105,11 @@ with DAG(
         bash_command='echo "Pipeline run complete at $(date)"',
     )
 
-    # ── DAG Dependency graph ──────────────────────────────────────────────
-    [bronze_upi, bronze_cc] >> [silver_upi, silver_cc] >> dbt_gold >> dbt_test >> done
+# ── DAG Dependency graph ──────────────────────────────────────────────
+    
+    # 1. Independent Bronze to Silver flows
+    bronze_upi >> silver_upi
+    bronze_cc >> silver_cc
+
+    # 2. Both Silver tables must be ready before Gold runs
+    [silver_upi, silver_cc] >> dbt_gold >> dbt_test >> done
