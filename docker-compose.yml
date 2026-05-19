@@ -31,6 +31,7 @@ x-airflow-common: &airflow-common
     - ./delta-lake:/delta-lake
     - ./data:/data
     - ./spark/jobs:/opt/spark/jobs
+    - spark-jars:/opt/sparks/jar
   depends_on:
     postgres-meta:
       condition: service_healthy

@@ -17,4 +17,5 @@ RUN pip install --no-cache-dir \
     apache-airflow-providers-apache-spark==4.7.1 \
     apache-airflow-providers-postgres==5.10.2 \
     faker \
-    confluent-kafka
+    confluent-kafka \
+    delta-spark==3.5.0
