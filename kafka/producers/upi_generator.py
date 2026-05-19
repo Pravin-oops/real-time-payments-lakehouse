@@ -10,8 +10,8 @@ from pathlib import Path
 
 fake = Faker("en_IN")
 OUTPUT_DIR = Path(os.getenv("OUTPUT_DIR", "/data/raw/upi"))
-INTERVAL = int(os.getenv("BATCH_INTERVAL_SECONDS", 60))
-RECORDS = int(os.getenv("RECORDS_PER_BATCH", 500))
+INTERVAL = int(os.getenv("BATCH_INTERVAL_SECONDS", 600))
+RECORDS = int(os.getenv("RECORDS_PER_BATCH", 100))
 
 BANKS = ["HDFC", "SBI", "ICICI", "AXIS", "KOTAK", "PNB", "BOB", "CANARA"]
 STATUS = ["SUCCESS", "SUCCESS", "SUCCESS", "FAILED", "PENDING"]
